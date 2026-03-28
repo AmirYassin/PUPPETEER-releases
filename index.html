@@ -1036,16 +1036,6 @@
         </div>
       </div>
 
-      <div class="verify-block reveal reveal-delay-4">
-        <p class="verify-label">Verify your download (optional but recommended)</p>
-        <pre class="verify-code"><span class="comment"># Verify code signature</span>
-<span class="cmd">codesign --verify --deep --strict /Applications/PUPPETEER.app</span>
-<span class="expected"># /Applications/PUPPETEER.app: valid on disk</span>
-
-<span class="comment"># Verify Apple notarization</span>
-<span class="cmd">spctl -a -t open --context context:primary-signature -v /Applications/PUPPETEER.app</span>
-<span class="expected"># /Applications/PUPPETEER.app: accepted  source=Notarized Developer ID</span></pre>
-      </div>
     </div>
   </section>
 
