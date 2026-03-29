@@ -913,47 +913,6 @@
     </div>
   </section>
 
-  <!-- ─── Architecture ─────────────────────────────────────────────────────── -->
-  <section id="architecture">
-    <div class="container">
-      <p class="section-label reveal">Under the Hood</p>
-      <h2 class="section-heading reveal reveal-delay-1">Clean separation.<br>Tight integration.</h2>
-
-      <div class="arch-pre-wrap reveal reveal-delay-2">
-        <pre class="arch-pre">
-  User
-    │
-    ▼
-  ┌──────────────────────────────────────┐
-  │  PUPCLIENT  ·  PySide6 / Qt6 GUI    │
-  │                                      │
-  │  ChatWidget   TaskWidget   Memory    │
-  │  Monitor      Requests     Logo      │
-  │                 ↕                    │
-  │  Swarm Config  ·  Permission Gates   │
-  └───────────────┬──────────────────────┘
-                  │  REST API
-                  │  localhost:5006
-                  ▼
-  ┌──────────────────────────────────────┐
-  │  PUPSERVER  ·  Flask Backend         │
-  │                                      │
-  │  AgentsPool  ──────────────────────┐ │
-  │  │                                 │ │
-  │  ├─ AgentWrapper ─ AgentCognition  │ │
-  │  │     └─ LLM_Interface            │ │
-  │  │           └─ Gemini API ────────┘ │
-  │  │                                   │
-  │  ├─ AgentWrapper ◄──► InterChannel   │
-  │  │                                   │
-  │  └─ AgentWrapper                     │
-  │                                      │
-  │  AgentStorage  ·  MessageStore       │
-  └──────────────────────────────────────┘
-        </pre>
-      </div>
-    </div>
-  </section>
 
   <!-- ─── Tech Stack ────────────────────────────────────────────────────────── -->
   <section id="stack">
