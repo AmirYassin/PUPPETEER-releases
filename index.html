@@ -308,6 +308,34 @@
       margin: 0 auto 56px;
       line-height: 1.8;
     }
+    .about-statement {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--near-black);
+      max-width: 800px;
+      margin: 0 auto 32px;
+      font-style: italic;
+    }
+    .about-statement span {
+      display: inline;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .about-statement span.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .about-tagline {
+      font-family: var(--font-mono);
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--graphite-light);
+      margin-top: 48px;
+    }
     .hero-screenshot {
       width: 100%;
       box-shadow: 0 8px 48px var(--shadow);
@@ -843,13 +871,14 @@
     <div class="container">
       <p class="section-label reveal">About</p>
       <h2 class="section-heading reveal reveal-delay-1">What is PUPPETEER?</h2>
-      <p class="section-body reveal reveal-delay-2">
-        PUPPETEER is a desktop orchestration platform that lets multiple AI agents coordinate in real-time.
-        Each agent maintains its own conversation, memory, and task queue. They communicate through
-        inter-agent channels. And critically &mdash; humans remain in control. Every sensitive action
-        requires your approval before execution.<br><br>
-        Built for macOS. Built with precision. Built to stay.
+      <p class="about-statement">
+        <span class="about-word" style="transition-delay: 0.1s">PUPPETEER is a desktop orchestration platform that lets multiple AI agents coordinate in real-time. </span>
+        <span class="about-word" style="transition-delay: 0.4s">Each agent maintains its own conversation, memory, and task queue. </span>
+        <span class="about-word" style="transition-delay: 0.7s">They communicate through inter-agent channels. </span>
+        <span class="about-word" style="transition-delay: 1.0s">And critically &mdash; humans remain in control. </span>
+        <span class="about-word" style="transition-delay: 1.3s">Every sensitive action requires your approval before execution.</span>
       </p>
+      <p class="about-tagline reveal" style="transition-delay: 1.8s">Built for macOS. Built with precision. Built to stay.</p>
     </div>
   </section>
 
@@ -1095,6 +1124,18 @@
         });
       }, { threshold: 0.12 });
       els.forEach(function (el) { io.observe(el); });
+
+      // Staggered about-word animation
+      var words = document.querySelectorAll('.about-word');
+      var wordIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            wordIO.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      words.forEach(function (w) { wordIO.observe(w); });
     }());
 
     // Nav border on scroll
